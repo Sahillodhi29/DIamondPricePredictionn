@@ -2,10 +2,20 @@ from src.pipelines.prediction_pipeline import CustomData,PredictPipeline
 
 from flask import Flask,request,render_template,jsonify
 
+from src.pipelines.training_pipeline import TrainingPipeline
+
 
 application=Flask(__name__)
 
 app=application
+
+@app.route('/train')
+def training():
+    object=TrainingPipeline()
+    object.RunPipeline()
+
+    return "Training Completed"
+
 
 @app.route("/")
 def home_page():
